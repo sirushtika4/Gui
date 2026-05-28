@@ -2,10 +2,12 @@
 defineProps<{
   cartCount: number
   isDark: boolean
+  isLoggedIn: boolean
 }>()
 
 const emit = defineEmits<{
   (e: 'toggleTheme'): void
+  (e: 'toggleLogin'): void
 }>()
 </script>
 
@@ -21,6 +23,14 @@ const emit = defineEmits<{
           @click="emit('toggleTheme')"
         >
           {{ isDark ? 'Light mode' : 'Dark mode' }}
+        </button>
+        <button
+          type="button"
+          class="rounded-md border border-slate-300 px-3 py-1.5 text-sm font-medium hover:bg-slate-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 dark:border-slate-700 dark:hover:bg-slate-800"
+          :aria-pressed="isLoggedIn"
+          @click="emit('toggleLogin')"
+        >
+          {{ isLoggedIn ? 'Logout' : 'Login' }}
         </button>
         <span
           class="rounded-full bg-indigo-600 px-3 py-1 text-sm font-semibold text-white"
